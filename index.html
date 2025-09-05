@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Informáticos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            border-left: 5px solid green;
+            border-right: 5px solid red;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            text-align: center;
+        }
+        header h1 {
+            margin: 5px 0;
+            font-size: 22px;
+            color: #0f0; /* nombre de la empresa en verde */
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav ul li a:hover {
+            color: #0f0;
+        }
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-images img {
+            width: 100%;
+            height: 250px; /* ✅ reducido el alto del carrusel */
+            object-fit: cover;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        .carousel-button.prev {
+            left: 10px;
+        }
+        .carousel-button.next {
+            right: 10px;
+        }
+        .services, .about, .contact {
+            margin: 40px 0;
+        }
+        .services h2, .about h2, .contact h2 {
+            color: #333;
+            border-bottom: 2px solid green;
+            padding-bottom: 10px;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .service-item {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .service-item h3 {
+            color: red;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Grupo: OCS</h1> <!-- ✅ Nombre de la empresa -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="nosotros.html">NOSOTROS</a></li>
+                    <li><a href="contacto.html">CONTACTO</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="inicio" class="carousel">
+            <div class="carousel-images">
+                <img src="imag/Desarrollo.jpg" alt="Desarrollo web">
+                <img src="imag/Formt.jpg" alt="Formateo de pc-Laptos">
+                <img src="imag/soluciones.jpg" alt="Soluciones Informáticas">
+                <img src="imag/deposit.jpg" alt="Instalacion de programas">
+            </div>
+            <button class="carousel-button prev">&#10094;</button>
+            <button class="carousel-button next">&#10095;</button>
+        </section>
+
+        <section id="servicios" class="services">
+            <h2>Nuestros Servicios</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>Desarrollo de Páginas Web</h3>
+                    <p>Creación de sitios web personalizados, modernos y responsivos.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Soluciones Informáticas</h3>
+                    <p>Soluciones Informáticas a mediana y a su adquision segun la velocidad de sus equipos.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Formateo de pc-Laptos</h3>
+                    <p>Soluciones de formateo en Windows y otros.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Instalacion de programas y software</h3>
+                    <p>Contamos con una intermedia experiencia Instalacion de programas para.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Otros Servicios</h3>
+                    <p>Consultoría tecnológica, recuperación de datos y más.</p>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <p>&copy; 2025 Grupo OCS. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        const carousel = document.querySelector('.carousel-images');
+        const images = document.querySelectorAll('.carousel-images img');
+        const prevButton = document.querySelector('.carousel-button.prev');
+        const nextButton = document.querySelector('.carousel-button.next');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            carousel.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            showImage(currentIndex);
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            showImage(currentIndex);
+        });
+
+        // Auto-slide cada 5 segundos
+        setInterval(() => {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            showImage(currentIndex);
+        }, 5000);
+    </script>
+</body>
+</html>
